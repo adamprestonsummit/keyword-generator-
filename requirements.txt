@@ -1,0 +1,17 @@
+streamlit==1.39.0
+openai>=1.40.0
+google-generativeai>=0.7.2
+trafilatura==1.7.0
+readability-lxml==0.8.1
+beautifulsoup4==4.12.3
+sentence-transformers==3.0.1
+hdbscan==0.8.38.post1
+scikit-learn==1.5.1
+pandas==2.2.2
+numpy==1.26.4
+tqdm==4.66.4
+python-dotenv==1.0.1
+gspread==6.1.2
+requests==2.32.3
+# Optional, but great for saving Semrush units:
+requests-cache==1.2.1
