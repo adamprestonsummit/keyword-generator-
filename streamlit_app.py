@@ -137,7 +137,19 @@ if triggered:
             market=market,
             language=language
         )
-        df = df.join(pd.DataFrame(tags))
+      
+    tag_df = pd.DataFrame(tags)
+
+    # Make sure expected columns exist even if the LLM returned weird data:
+    for col in ["keyword", "intent", "funnel", "theme"]:
+        if col not in tag_df.columns:
+            tag_df[col] = np.nan
+
+    # Keep only the columns we care about, one row per keyword
+    tag_df = tag_df[["keyword", "intent", "funnel", "theme"]].drop_duplicates(subset=["keyword"])
+
+    # Merge on 'keyword' to avoid overlapping-column error
+    df = df.merge(tag_df, on="keyword", how="left")
 
     # 6) Name clusters
     cluster_names = {}
